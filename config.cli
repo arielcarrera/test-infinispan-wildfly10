@@ -1,0 +1,9 @@
+/subsystem=infinispan/cache-container=TEST:add(default-cache=x)
+
+/subsystem=infinispan/cache-container=TEST/local-cache=x:add()
+/subsystem=infinispan/cache-container=TEST/local-cache=x/component=eviction:add(max-entries=2,strategy=LRU)
+/subsystem=infinispan/cache-container=TEST/local-cache=x/component=expiration:add(max-iddle=3000,lifespan=9000)
+
+/subsystem=infinispan/cache-container=TEST/local-cache=y:add()
+/subsystem=infinispan/cache-container=TEST/local-cache=y/component=eviction:add(max-entries=1,strategy=LRU)
+/subsystem=infinispan/cache-container=TEST/local-cache=y/component=expiration:add(max-iddle=1000,lifespan=3000)

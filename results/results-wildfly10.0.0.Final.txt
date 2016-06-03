@@ -1,0 +1,62 @@
+configuration:
+cache manager class: class org.jboss.as.clustering.infinispan.DefaultCacheContainer
+cache names at start: []
+
+** default cache**:
+* expected configuration (name=x,expiration(lifespan=9000,max-idle=3000),eviction(strategy=LRU,max-entries=2) *
+cache class: class org.jboss.as.clustering.infinispan.DefaultCache
+name: x
+eviction: EvictionConfiguration [attributes=[threadPolicy=DEFAULT, size=-1, type=COUNT, strategy=NONE]]
+expiration: ExpirationConfiguration [attributes=[wakeUpInterval=60000, maxIdle=-1, reaperEnabled=true, lifespan=-1]]
+tx manager: null
+
+** x cache**:
+* expected configuration (name=x,expiration(lifespan=9000,max-idle=3000),eviction(strategy=LRU,max-entries=2) *
+cache class: class org.jboss.as.clustering.infinispan.DefaultCache
+name: x
+eviction: EvictionConfiguration [attributes=[threadPolicy=DEFAULT, size=-1, type=COUNT, strategy=NONE]]
+expiration: ExpirationConfiguration [attributes=[wakeUpInterval=60000, maxIdle=-1, reaperEnabled=true, lifespan=-1]]
+tx manager: null
+
+** y cache**:
+* expected configuration (name=y,expiration(lifespan=3000,max-idle=1000),eviction(strategy=LRU,max-entries=1) *
+cache class: class org.jboss.as.clustering.infinispan.DefaultCache
+name: y
+eviction: EvictionConfiguration [attributes=[threadPolicy=DEFAULT, size=-1, type=COUNT, strategy=NONE]]
+expiration: ExpirationConfiguration [attributes=[wakeUpInterval=60000, maxIdle=-1, reaperEnabled=true, lifespan=-1]]
+tx manager: null
+
+
+cache names at the end: [x, y]
+
+
+data:
+inserting item
+put (current time:16:21:19):
+
+OK
+
+
+sleeping 0.5 seconds
+
+reading item [expecting(x found, y found)]
+read (current time:16:21:19):
+x:TEST:16:21:19
+y:TEST:16:21:19
+
+
+sleeping 2 seconds
+
+reading item [expecting(x found, y found)]
+read (current time:16:21:21):
+x:TEST:16:21:19
+y:TEST:16:21:19
+
+
+sleeping 10 seconds
+
+reading item [expecting(x found, y found)]
+read (current time:16:21:31):
+x:TEST:16:21:19
+y:TEST:16:21:19
+completed.
