@@ -1,5 +1,5 @@
-# wildfly10-infinispan-test
-A quick start test service for wildfly container with infinspan & ejb
+# test-infinispan-wildfly10
+A quick start test project to test infinispan subsystem configuration in wildfly 10 and wildfly 8
 
 ## Install
 
